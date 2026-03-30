@@ -1,0 +1,52 @@
+Dette er bare en forklaring av spillet gang i kodedelen, laget av Claude.
+
+1. Setup Screen
+
+Velg antall spillere (1–4)
+Velg vanskelighetsgrad: Enkel / Medium / Hard / Blandet
+Spillernavn (valgfritt)
+"Start spill"-knapp
+
+
+2. Spilltur – normal rute
+Steg 1 – Kast D20 (digitalt)
+
+Knapp: "Kast D20"
+Animert terning ruller og viser resultat
+Resultatet bestemmer hvilket kort som trekkes fra valgt vanskelighetsgrad
+
+
+Steg 2 – Spørsmålskort vises
+
+Spørsmål vises på skjermen
+Spørsmålstype: flervalg (A/B/C/D) eller kodeoppgave (fri tekst)
+Etter svar: vis om det er riktig/feil + forklaring
+
+
+Steg 3 – Resultat av svar
+
+✅ Riktig → "Kast D6 og flytt brikken!" (beskjed til spiller)
+Knapp: "Kast D6" (digitalt)
+Animert terning ruller og viser resultat
+❌ Feil → "Bli stående" eller annen straff dere bestemmer – ingen D6
+
+
+Steg 4 – Neste spiller
+
+Knapp: "Neste spiller" / tur går videre
+
+
+3. Boss-kamp
+
+Knapp synlig i grensesnittet: "Aktiver boss-kamp" (trykkes når en spiller lander på boss-rute fysisk)
+Velg hvilken spiller som møter bossen
+Spilleren får 2–3 spørsmål på rad (samme flyt som normalt, men flere etter hverandre)
+Alle riktige → seier mot boss, spiller fortsetter
+Én eller flere feil → tap, spiller sendes tilbake (dere bestemmer konsekvens)
+
+
+4. Innhold
+
+JavaScript-spørsmål fordelt på tre vanskelighetsgrader
+12 kort per vanskelighetsgrad (36 totalt)
+Typer: flervalg og kodeoppgave
