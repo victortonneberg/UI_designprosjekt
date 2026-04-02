@@ -9,7 +9,7 @@ export default function PlayerInfo() {
         setter(value);
         console.log(value);
     };
-
+    {/** IKKE helt up to date med "data" enda */}
     return (
         <div>
             <article>
