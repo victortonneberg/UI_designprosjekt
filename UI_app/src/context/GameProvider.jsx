@@ -6,6 +6,7 @@ export const GameProvider = ({ children }) => {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [phase, setPhase] = useState("roll-d20");
   const [activeBossFight, setActiveBossFight] = useState(false);
+  const [d20Result, setD20Result] = useState(null);
 
   const nextPlayer = () => {
     if (players.length === 0) return;
@@ -37,6 +38,8 @@ export const GameProvider = ({ children }) => {
         setActiveBossFight,
         startBossFight,
         endBossFight,
+        d20Result,
+        setD20Result,
       }}
     >
       {children}
