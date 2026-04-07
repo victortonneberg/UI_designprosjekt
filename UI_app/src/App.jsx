@@ -1,16 +1,11 @@
-import Layout from "./components/Layout";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import QuestionCard from "./components/questions/QuestionCard";
+import SetupScreen from "./components/setup/SetupScreen";
+import { GameProvider } from "./context/GameProvider";
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        {/* <Route path="/" element={<Home />} />  ikke det vi skal ha */}
-        {/* <Route path="/about" element={<About />} /> */}
-        <Route path="/question" element={<QuestionCard />} />
-      </Routes>
-    </Layout>
+    <GameProvider>
+      <SetupScreen />
+    </GameProvider>
   );
 }
 export default App;
