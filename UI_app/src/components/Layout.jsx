@@ -1,24 +1,48 @@
+import { useState } from "react";
+import "../assets/styles/layout.scss";
 
-export default function Layout({children}){
-    return(
-        <>       
-        <header>
-            Navn på spill...
-           <nav>
-               <ul>
-               <li><button>?</button></li> {/** ? - skal føre til Regler/hjelp */}
-               </ul>
-           </nav>
-       </header>
+export default function Layout({ children }) {
+  const [showRules, setShowRules] = useState(false);
+  const close = () => setShowRules(false);
 
-       <main>
-       {children}
-       </main>
+  return (
+    <>
+      <header>
+        Navn på spill...
+        <nav>
+          <ul>
+            <li>
+              <button onClick={() => setShowRules(true)}>?</button>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-       <footer>
+      <main>{children}</main>
+
+      <footer>
         <p>2026 &copy; Spillnavn... </p>
-       </footer>
-       </>
-    )
-}
+      </footer>
 
+      {showRules && (
+        <div className="modal" onClick={close}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close" onClick={close}>
+              X
+            </button>
+            <h2>Regler</h2>
+            <ul id="rulesBox">
+              <li>
+                Boss: Når man lander på eller forbi boss, stopper man brikken på
+                boss, og venter til neste runde med å bekjempe boss. Man får 30
+                sekunder på å bekjempe boss. I boss-kampen triller man D-20
+                sidet terning
+              </li>
+              <li>Regel 2:</li>
+            </ul>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
