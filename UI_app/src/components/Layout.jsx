@@ -1,4 +1,4 @@
-
+import "../assets/styles/Layout.scss";
 export default function Layout({children}){
     return(
         <>       
