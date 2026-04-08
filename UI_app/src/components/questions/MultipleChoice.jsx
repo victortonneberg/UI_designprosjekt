@@ -1,27 +1,33 @@
+import { useState } from "react";
 
+function MultipleChoice({ question, onAnswer }) {
+  const [valgtIndex, setValgtIndex] = useState(null);
 
-function MultipleChoice(props) {
+  const handleSvar = (index) => {
+    if (valgtIndex !== null) return;
+    setValgtIndex(index);
+    onAnswer(index === question.correct);
+  };
+
   return (
     <div>
-      <p>{props.question.question}</p>
+      <p>{question.question}</p>
 
-      {props.question.options.map((option) => (
-        <button key={option.id} onClick={() => props.onSvar(option.id)}>
-          {option.id}: {option.text}
+      {question.options.map((option, index) => (
+        <button key={index} onClick={() => handleSvar(index)}>
+          {option}
         </button>
       ))}
 
-      {props.valgtSvar && (
-        
+      {valgtIndex !== null && (
         <p>
-          {props.valgtSvar === props.question.correct
+          {valgtIndex === question.correct
             ? "Riktig!"
-            : `Ops, dette var ikke helt riktig! riktig svar er: ${props.question.correct}`}
+            : `Feil! Riktig svar er: ${question.options[question.correct]}`}
         </p>
-        
       )}
     </div>
-  )
+  );
 }
 
-export default MultipleChoice
+export default MultipleChoice;

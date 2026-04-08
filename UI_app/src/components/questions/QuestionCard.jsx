@@ -1,29 +1,26 @@
-import { useState } from "react"
-import MultipleChoice from "./MultipleChoice"
-import DragAndDrop from "./DragAndDrop" 
+import { useGame } from "../../context/useGame";
+import { questions, categoryByD20 } from "../../data/questions";
+import MultipleChoice from "./MultipleChoice";
+import DragAndDrop from "./DragAndDrop";
 
-const testSpørsmål = {
-  question: "Hva er en array i programmering?",
-  options: [
-    { id: "A", text: "En enkelt variabel som lagrer én verdi" },
-    { id: "B", text: "En liste som kan lagre flere verdier i én variabel" },
-    { id: "C", text: "En funksjon som returnerer tall" },
-    { id: "D", text: "Et nøkkelord for å lage løkker" },
-  ],
-  correct: "B",
-}
+export default function QuestionCard({ d20Result, onAnswer }) {
+  const { players, currentPlayerIndex } = useGame();
 
-export default function QuestionCard() {
-  const [valgtSvar, setValgtSvar] = useState(null)
+  const difficulty = players[currentPlayerIndex]?.difficulty ?? "easy";
+  const category = categoryByD20[d20Result];
+  const categoryQuestions = questions[category]?.[difficulty] ?? [];
+  const question = categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
 
-  return (
-    <div>
-      <MultipleChoice
-        question={testSpørsmål}
-        valgtSvar={valgtSvar}
-        onSvar={setValgtSvar}
-      />
-      <DragAndDrop />
-    </div>
-  )
+  if (!category || !question) return <p>Fant ikke spørsmål for terningresultat {d20Result}.</p>;
+
+  switch (question.type) {
+    case "mc":
+      return <MultipleChoice question={question} onAnswer={onAnswer} />;
+    case "code":
+      return <CodeQuestion question={question} onAnswer={onAnswer} />;
+    case "drag":
+      return <DragAndDrop question={question} onAnswer={onAnswer} />;
+    default:
+      return <p>Ukjent spørsmålstype: {question.type}</p>;
+  }
 }
