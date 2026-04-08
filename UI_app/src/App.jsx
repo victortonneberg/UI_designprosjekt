@@ -6,9 +6,7 @@ function App() {
   return (
     <Layout>
       <Routes>
-        {/* <Route path="/" element={<Home />} />  ikke det vi skal ha */}
-        {/* <Route path="/about" element={<About />} /> */}
-        <Route path="/question" element={<QuestionCard />} />
+        <Route path="/" element={<QuestionCard />} />  
       </Routes>
     </Layout>
   );

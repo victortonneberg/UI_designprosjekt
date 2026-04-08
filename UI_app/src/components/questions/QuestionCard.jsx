@@ -1,5 +1,6 @@
 import { useState } from "react"
 import MultipleChoice from "./MultipleChoice"
+import DragAndDrop from "./DragAndDrop" 
 
 const testSpørsmål = {
   question: "Hva er en array i programmering?",
@@ -22,6 +23,7 @@ export default function QuestionCard() {
         valgtSvar={valgtSvar}
         onSvar={setValgtSvar}
       />
+      <DragAndDrop />
     </div>
   )
 }
