@@ -5,7 +5,10 @@ export default function SetupScreen({ onStartGame }) {
   const { setPlayers } = useGame();
 
   const [antallSpillere, setAntallSpillere] = useState(2);
-  const [spillere, setSpillere] = useState([{ name: "", difficulty: "easy" }]);
+  const [spillere, setSpillere] = useState([
+    { name: "", difficulty: "easy" },
+    { name: "", difficulty: "easy" },
+  ]);
 
   // Oppdater antall spillere og endrer spiller-listen hvis nødvendig:
   const handleAntall = (n) => {
@@ -67,7 +70,12 @@ export default function SetupScreen({ onStartGame }) {
         </div>
       ))}
 
-      <button onClick={handleStart}>Start spill</button>
+      <button
+        onClick={handleStart}
+        disabled={spillere.some((s) => s.name.trim() === "")}
+      >
+        Start spill
+      </button>
     </article>
   );
 }

@@ -25,6 +25,7 @@ export const GameProvider = ({ children }) => {
     setPhase("roll-d20");
   };
 
+  // Kilde: https://www.w3schools.com/react/react_usecontext.asp
   return (
     <GameContext.Provider
       value={{
