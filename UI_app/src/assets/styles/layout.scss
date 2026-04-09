@@ -41,15 +41,13 @@
     margin-top: 0;
     color: var(--accent);
   }
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
 
-  .rules-text {
-    text-align: left;
-
-    ul {
-    }
-
-    li {
-    }
+  li {
+    margin-bottom: 8px;
   }
 }
 
