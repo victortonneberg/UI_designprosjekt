@@ -17,18 +17,18 @@ export default function RulesModal({ onClose }) {
               man vil spille med
             </li>
             <li>
-              Generelt: Man kaster en D-20 terning for å bestemme kategori, om
-              man svarer rett triller man deretter en d-6 terning som bestemmer
-              antall ruter man flytter.
+              Generelt: Kast en D20 for å velge kategori, man får 60 sekund på å
+              svare. Svarer du riktig, kaster du en D6 og flytter det antallet
+              ruter.
             </li>
             <li>
               Wild card: Når man lander på stjerne trekker man et kort og kan
               bruke det når man ønsker
             </li>
             <li>
-              Boss: Når man lander på eller forbi boss, stopper man brikken på
-              boss, og venter til neste runde med å bekjempe boss. Man får 60
-              sekunder på å bekjempe boss. I boss-kampen triller man D-20
+              Boss: O man lander på eller passer boss så stopp der. Neste runde
+              kjemper du mot bossen. Du får 60 sekunder og må svare på to
+              spørsmål. Kategori bestemmes med en D20, som vanlig.
             </li>
           </ul>
         </div>
