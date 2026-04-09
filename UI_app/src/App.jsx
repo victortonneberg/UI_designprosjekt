@@ -1,16 +1,18 @@
-import Layout from "./components/Layout";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import QuestionCard from "./components/questions/QuestionCard";
+import { useState } from "react";
+import { GameProvider } from "./context/GameProvider";
+import SetupScreen from "./components/setup/SetupScreen";
+import GameScreen from "./components/game/GameScreen";
 
 function App() {
+  const [screen, setScreen] = useState("setup");
+
   return (
-    <Layout>
-      <Routes>
-        {/* <Route path="/" element={<Home />} />  ikke det vi skal ha */}
-        {/* <Route path="/about" element={<About />} /> */}
-        <Route path="/question" element={<QuestionCard />} />
-      </Routes>
-    </Layout>
+    <GameProvider>
+      {screen === "setup" && (
+        <SetupScreen onStartGame={() => setScreen("game")} />
+      )}
+      {screen === "game" && <GameScreen />}
+    </GameProvider>
   );
 }
 export default App;
