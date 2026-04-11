@@ -1,14 +1,24 @@
 import { useState } from "react";
 import { useGame } from "../../context/useGame";
+import { categoryNames } from "../../data/questions";
+
+const alleKategorier = Object.keys(categoryNames);
 
 export default function SetupScreen({ onStartGame }) {
-  const { setPlayers } = useGame();
+  const { setPlayers, setSelectedCategories } = useGame();
 
   const [antallSpillere, setAntallSpillere] = useState(2);
   const [spillere, setSpillere] = useState([
     { name: "", difficulty: "easy" },
     { name: "", difficulty: "easy" },
   ]);
+  const [valgtKategorier, setValgtKategorier] = useState(alleKategorier);
+
+  const toggleKategori = (key) => {
+    setValgtKategorier((prev) =>
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+    );
+  };
 
   // Oppdater antall spillere og endrer spiller-listen hvis nødvendig:
   const handleAntall = (n) => {
@@ -30,8 +40,8 @@ export default function SetupScreen({ onStartGame }) {
   };
 
   const handleStart = () => {
-    // Skriver til context
     setPlayers(spillere);
+    setSelectedCategories(valgtKategorier);
     onStartGame();
   };
 
@@ -70,9 +80,26 @@ export default function SetupScreen({ onStartGame }) {
         </div>
       ))}
 
+      <fieldset>
+        <legend>Kategorier:</legend>
+        {alleKategorier.map((key) => (
+          <label key={key}>
+            <input
+              type="checkbox"
+              checked={valgtKategorier.includes(key)}
+              onChange={() => toggleKategori(key)}
+            />
+            {categoryNames[key]}
+          </label>
+        ))}
+      </fieldset>
+
       <button
         onClick={handleStart}
-        disabled={spillere.some((s) => s.name.trim() === "")}
+        disabled={
+          spillere.some((s) => s.name.trim() === "") ||
+          valgtKategorier.length === 0
+        }
       >
         Start spill
       </button>

@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { categoryByD20, categoryNames } from "../../data/questions";
+import { categoryNames } from "../../data/questions";
+import { useGame } from "../../context/useGame";
 import "./dice.scss";
 
 export default function D20Roller({ onRollComplete }) {
+  const { selectedCategories } = useGame();
   const [result, setResult] = useState(null);
 
   const roll = () => {
@@ -10,7 +12,9 @@ export default function D20Roller({ onRollComplete }) {
     setResult(r);
   };
 
-  const category = result ? categoryByD20[result] : null;
+  const category = result
+    ? selectedCategories[(result - 1) % selectedCategories.length]
+    : null;
   const categoryName = category ? categoryNames[category] : null;
 
   return (
