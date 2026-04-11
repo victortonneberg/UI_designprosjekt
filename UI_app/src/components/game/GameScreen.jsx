@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useGame } from "../../context/useGame";
 import D20Roller from "./D20Roller";
 import D6Roller from "./D6Roller";
@@ -15,6 +16,7 @@ export default function GameScreen() {
     activeBossFight,
     startBossFight,
   } = useGame();
+  const [forklaring, setForklaring] = useState(null);
 
   // Funksjon for å bestemme hvilken spillfase som skal rendre.
   function renderPhase() {
@@ -34,12 +36,26 @@ export default function GameScreen() {
         return (
           <QuestionCard
             d20Result={d20Result}
-            onAnswer={(correct) => setPhase(correct ? "roll-d6" : "next")}
+            onAnswer={(correct, explanation) => {
+              if (!correct) setForklaring(explanation);
+              setPhase(correct ? "roll-d6" : "next");
+            }}
           />
         );
 
       case "roll-d6":
         return <D6Roller onRollComplete={() => nextPlayer()} />;
+
+      case "next":
+        return (
+          <div>
+            <p>Feil svar! {forklaring}</p>
+            <button onClick={() => { setForklaring(null); nextPlayer(); }}>
+              Neste spiller
+            </button>
+          </div>
+        );
+
       default:
         return null;
     }

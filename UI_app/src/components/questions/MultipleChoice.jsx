@@ -6,7 +6,7 @@ function MultipleChoice({ question, onAnswer }) {
   const handleSvar = (index) => {
     if (valgtIndex !== null) return;
     setValgtIndex(index);
-    onAnswer(index === question.correct);
+    onAnswer(index === question.correct, question.explanation);
   };
 
   return (
