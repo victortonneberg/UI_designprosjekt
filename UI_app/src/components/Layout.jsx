@@ -1,24 +1,24 @@
-import "../assets/styles/Layout.scss";
-export default function Layout({children}){
-    return(
-        <>       
-        <header>
-            Navn på spill...
-           <nav>
-               <ul>
-               <li><button>?</button></li> {/** ? - skal føre til Regler/hjelp */}
-               </ul>
-           </nav>
-       </header>
+// import "../assets/styles/Layout.scss";
+export default function Layout({ children }) {
+  return (
+    <>
+      <header>
+        Navn på spill...
+        <nav>
+          <ul>
+            <li>
+              <button>?</button>
+            </li>{" "}
+            {/** ? - skal føre til Regler/hjelp */}
+          </ul>
+        </nav>
+      </header>
 
-       <main>
-       {children}
-       </main>
+      <main>{children}</main>
 
-       <footer>
+      <footer>
         <p>2026 &copy; Spillnavn... </p>
-       </footer>
-       </>
-    )
+      </footer>
+    </>
+  );
 }
-

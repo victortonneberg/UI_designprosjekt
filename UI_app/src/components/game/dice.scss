@@ -1,0 +1,107 @@
+.diceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(100%, 340px);
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at top, rgba(111, 168, 220, 0.14), transparent 28%),
+    linear-gradient(180deg, #121826, #0b1020);
+  color: #f5f7fb;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.diceArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.diceArea--d20 {
+  box-shadow: inset 4px 0 0 #6fa8dc;
+}
+
+.diceArea--d6 {
+  box-shadow: inset 4px 0 0 #93c47d;
+}
+
+.diceButton {
+  padding: 0.72rem 1rem;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    filter 140ms ease,
+    box-shadow 140ms ease;
+  box-shadow:
+    0 12px 22px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.diceButton:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.diceButton:active {
+  transform: translateY(1px);
+}
+
+.diceButton--d20 {
+  background: linear-gradient(135deg, #2f5bb8, #5aa7ff);
+}
+
+.diceButton--d6 {
+  background: linear-gradient(135deg, #2e7a4b, #63d08c);
+}
+
+.diceText {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.diceResult {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  margin-left: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.65rem;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 800;
+}
+
+.diceResult--d20 {
+  color: #beddff;
+}
+
+.diceResult--d6 {
+  color: #d2f7d8;
+}
+
+@media (max-width: 480px) {
+  .diceContainer {
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  .diceArea {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
