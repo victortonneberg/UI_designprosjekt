@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { categoryByD20, categoryNames } from "../../data/questions";
 import "./dice.scss";
 
 export default function D20Roller({ onRollComplete }) {
@@ -9,6 +10,9 @@ export default function D20Roller({ onRollComplete }) {
     setResult(r);
   };
 
+  const category = result ? categoryByD20[result] : null;
+  const categoryName = category ? categoryNames[category] : null;
+
   return (
     <div className="diceArea diceArea--d20">
       <button type="button" onClick={roll} disabled={!!result}>
@@ -18,6 +22,9 @@ export default function D20Roller({ onRollComplete }) {
         <>
           <p>
             Resultat: <strong>{result}</strong>
+          </p>
+          <p>
+            Kategori: <strong>{categoryName}</strong>
           </p>
           <button type="button" onClick={() => onRollComplete(result)}>
             Fortsett

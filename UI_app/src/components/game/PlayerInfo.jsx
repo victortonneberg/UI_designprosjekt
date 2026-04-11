@@ -1,36 +1,22 @@
-import React, { useState } from 'react';
+import { useGame } from "../../context/useGame";
+
+const difficultyLabel = {
+  easy: "Lett",
+  medium: "Medium",
+  hard: "Vanskelig",
+};
+
 export default function PlayerInfo() {
-   
+  const { players, currentPlayerIndex } = useGame();
 
-    const [playerName, setPlayerName] = useState('');
-    const [difficulty, setDifficulty] = useState('easy');
+  const currentPlayer = players[currentPlayerIndex];
 
-    const handleInputChange = (setter, value) => {
-        setter(value);
-        console.log(value);
-    };
-    {/** IKKE helt up to date med "data" enda */}
-    return (
-        <div>
-            <article>
-                <label>Spillernavn:</label>
-                <input
-                    type="text"
-                    value={playerName}
-                    onChange={(e) => handleInputChange(setPlayerName, e.target.value)}
-                />
-            </article>
-            <article>
-                <label>Vanskelighetsgrad:</label>
-                <select
-                    value={difficulty}
-                    onChange={(e) => handleInputChange(setDifficulty, e.target.value)}
-                >
-                    <option value="easy">Lett</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Vanskelig</option>
-                </select>
-            </article>
-        </div>
-    );
+  if (!currentPlayer) return null;
+
+  return (
+    <div>
+      <p>Det er <strong>{currentPlayer.name}</strong> sin tur</p>
+      <p>Vanskelighetsgrad: <strong>{difficultyLabel[currentPlayer.difficulty]}</strong></p>
+    </div>
+  );
 }

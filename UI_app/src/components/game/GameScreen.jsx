@@ -5,20 +5,11 @@ import QuestionCard from "../questions/QuestionCard";
 import PlayerInfo from "./PlayerInfo";
 import BossFight from "../boss/BossFight";
 
-function NextPlayer() {
-  const { nextPlayer } = useGame();
-  return (
-    <div>
-      <p>Din tur er over!</p>
-      <button onClick={nextPlayer}>Neste spiller</button>
-    </div>
-  );
-}
-
 export default function GameScreen() {
   const {
     phase,
     setPhase,
+    nextPlayer,
     d20Result,
     setD20Result,
     activeBossFight,
@@ -48,9 +39,7 @@ export default function GameScreen() {
         );
 
       case "roll-d6":
-        return <D6Roller onRollComplete={() => setPhase("next")} />;
-      case "next":
-        return <NextPlayer />;
+        return <D6Roller onRollComplete={() => nextPlayer()} />;
       default:
         return null;
     }
@@ -72,5 +61,4 @@ export default function GameScreen() {
       {renderPhase()}
     </div>
   );
-
 }

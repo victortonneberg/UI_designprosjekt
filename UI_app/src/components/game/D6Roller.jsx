@@ -26,7 +26,7 @@ export default function D6Roller({ onRollComplete }) {
             fremover!
           </p>
           <button type="button" onClick={() => onRollComplete(result)}>
-            Fortsett
+            Neste spiller
           </button>
         </>
       )}
