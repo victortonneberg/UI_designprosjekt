@@ -1,5 +1,10 @@
-// import "../assets/styles/Layout.scss";
+import { useState } from "react";
+import "../assets/styles/Layout.scss";
+import RulesModal from "./rulesButton/rules";
+
 export default function Layout({ children }) {
+  const [showRules, setShowRules] = useState(false);
+
   return (
     <>
       <header>
@@ -7,9 +12,10 @@ export default function Layout({ children }) {
         <nav>
           <ul>
             <li>
-              <button>?</button>
-            </li>{" "}
-            {/** ? - skal føre til Regler/hjelp */}
+              <button className="help-button" onClick={() => setShowRules(true)}>
+                Regler
+              </button>
+            </li>
           </ul>
         </nav>
       </header>
@@ -19,6 +25,8 @@ export default function Layout({ children }) {
       <footer>
         <p>2026 &copy; Spillnavn... </p>
       </footer>
+
+      {showRules && <RulesModal onClose={() => setShowRules(false)} />}
     </>
   );
 }
