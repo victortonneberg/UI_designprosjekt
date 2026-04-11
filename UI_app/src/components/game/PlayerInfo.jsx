@@ -1,4 +1,5 @@
 import { useGame } from "../../context/useGame";
+import "./GameScreen.scss";
 
 const difficultyLabel = {
   easy: "Lett",
@@ -14,9 +15,13 @@ export default function PlayerInfo() {
   if (!currentPlayer) return null;
 
   return (
-    <div>
-      <p>Det er <strong>{currentPlayer.name}</strong> sin tur</p>
-      <p>Vanskelighetsgrad: <strong>{difficultyLabel[currentPlayer.difficulty]}</strong></p>
+    <div className="player-info">
+      <p className="player-turn">
+        Det er <strong>{currentPlayer.name}</strong> sin tur
+      </p>
+      <p className="player-difficulty">
+        {difficultyLabel[currentPlayer.difficulty]}
+      </p>
     </div>
   );
 }

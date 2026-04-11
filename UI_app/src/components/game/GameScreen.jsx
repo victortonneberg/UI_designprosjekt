@@ -5,6 +5,7 @@ import D6Roller from "./D6Roller";
 import QuestionCard from "../questions/QuestionCard";
 import PlayerInfo from "./PlayerInfo";
 import BossFight from "../boss/BossFight";
+import "./GameScreen.scss";
 
 export default function GameScreen() {
   const {
@@ -48,9 +49,13 @@ export default function GameScreen() {
 
       case "next":
         return (
-          <div>
-            <p>Feil svar! {forklaring}</p>
-            <button onClick={() => { setForklaring(null); nextPlayer(); }}>
+          <div className="wrong-answer-panel">
+            <div className="wrong-label">Feil svar</div>
+            <p>{forklaring}</p>
+            <button
+              className="btn-next"
+              onClick={() => { setForklaring(null); nextPlayer(); }}
+            >
               Neste spiller
             </button>
           </div>
@@ -63,18 +68,22 @@ export default function GameScreen() {
 
   if (activeBossFight) {
     return (
-      <div>
+      <div className="game-screen">
         <PlayerInfo />
-        <BossFight />
+        <div className="boss-area">
+          <BossFight />
+        </div>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="game-screen">
       <PlayerInfo />
-      <button onClick={startBossFight}>Aktiver boss-kamp</button>
-      {renderPhase()}
+      <button className="btn-boss-activate" onClick={startBossFight}>
+        Aktiver boss-kamp
+      </button>
+      <div className="phase-panel">{renderPhase()}</div>
     </div>
   );
 }

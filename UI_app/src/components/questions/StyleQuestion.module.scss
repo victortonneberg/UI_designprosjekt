@@ -1,122 +1,279 @@
-
+// ── Question Components ───────────────────────────────────
+// Shared wrapper for all question types
 .questionWrapper {
-  padding: 24px;
-  max-width: 700px;
+  max-width: 680px;
   margin: 0 auto;
-  font-family: monospace;
+  animation: slideUp 0.3s ease;
 }
 
-
+// ── Multiple Choice ───────────────────────────────────────
 .multipleChoice {
-  h3 {
-    font-size: 20px;
-    margin-bottom: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  position: relative;
+
+  // Corner ornaments
+  &::before {
+    content: '◆';
+    position: absolute;
+    top: 1rem; left: 1rem;
+    color: var(--accent-dim);
+    font-size: 0.5rem;
+    opacity: 0.5;
   }
+}
+
+.questionText {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  font-weight: 600;
+  color: var(--text-bright);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
 }
 
 .optionsList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.6rem;
 }
 
 .optionBtn {
-  padding: 12px 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  background: white;
-  cursor: pointer;
-  font-size: 16px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
   text-align: left;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 2.5rem;
 
-  &:hover {
-    background: #f0f0f0;
+  // Option letter indicator
+  &::before {
+    content: counter(option-counter, upper-alpha);
+    counter-increment: option-counter;
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    transition: color 0.18s ease;
   }
 
+  &:hover:not(:disabled) {
+    border-color: var(--accent-dim);
+    background: var(--bg-card);
+    color: var(--text-bright);
+    box-shadow: var(--glow-accent);
+    transform: translateX(2px);
+
+    &::before { color: var(--accent); }
+  }
+
+  &:disabled { cursor: default; }
+
   &.correct {
-    border-color: green;
-    background: #e6ffe6;
-    color: green;
+    border-color: var(--green);
+    background: rgba(77, 189, 116, 0.1);
+    color: #b8f0c8;
+    box-shadow: var(--glow-green);
+
+    &::before { color: var(--green); }
   }
 
   &.wrong {
-    border-color: red;
-    background: #ffe6e6;
-    color: red;
+    border-color: var(--red);
+    background: rgba(224, 85, 85, 0.1);
+    color: #f5b8b8;
+    box-shadow: var(--glow-red);
+
+    &::before { color: var(--red); }
   }
 }
 
+// Reset counter on the options list
+.optionsList {
+  counter-reset: option-counter;
+}
 
+.feedbackText {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &.correct {
+    color: var(--green);
+    background: rgba(77, 189, 116, 0.08);
+    border: 1px solid rgba(77, 189, 116, 0.2);
+  }
+
+  &.wrong {
+    color: #f5b8b8;
+    background: rgba(224, 85, 85, 0.08);
+    border: 1px solid rgba(224, 85, 85, 0.2);
+  }
+}
+
+// ── Drag and Drop ─────────────────────────────────────────
 .dragAndDrop {
-  margin-top: 32px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
 
   h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
   }
 }
 
 .codeBlock {
-  background: #1e1e1e;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  font-size: 16px;
+  background: #0a0d14;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .dropZone {
-  display: inline-block;
-  min-width: 60px;
-  padding: 2px 8px;
-  border: 2px dashed #888;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  padding: 0.15rem 0.6rem;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
   border-radius: 4px;
-  text-align: center;
-  color: #888;
-  background: transparent;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+  vertical-align: middle;
+  cursor: copy;
 
   &.filled {
-    background: #2d4a7a;
-    color: #90caf9;
+    border-style: solid;
+    border-color: var(--blue);
+    background: rgba(74, 158, 255, 0.12);
+    color: #a8d4ff;
+    box-shadow: var(--glow-blue);
   }
 }
 
 .options {
   display: flex;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 0.5rem;
   flex-wrap: wrap;
+  margin-bottom: 1.25rem;
 }
 
 .option {
-  padding: 8px 16px;
-  background: #333;
-  color: #fff;
-  border-radius: 4px;
+  padding: 0.45rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.825rem;
   cursor: grab;
   user-select: none;
+  transition: all 0.15s ease;
 
   &:hover {
-    background: #555;
+    border-color: var(--blue);
+    color: #a8d4ff;
+    background: rgba(74, 158, 255, 0.08);
+    box-shadow: var(--glow-blue);
+  }
+
+  &:active { cursor: grabbing; }
+}
+
+.dragActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.confirmBtn {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #07090e;
+  background: linear-gradient(135deg, var(--accent), #f5bf40);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px var(--accent-glow);
+
+  &:not(:disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(232, 160, 32, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
   }
 }
 
 .resetBtn {
-  margin-top: 16px;
-  padding: 8px 16px;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1rem;
   cursor: pointer;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background: #eee;
+  transition: all 0.2s ease;
 
   &:hover {
-    background: #ddd;
+    border-color: var(--red);
+    color: var(--red);
   }
 }
 
 .result {
-  font-weight: bold;
-  margin-top: 16px;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
 
-  &.correct { color: green; }
-  &.wrong { color: red; }
+  &.correct {
+    color: var(--green);
+  }
+
+  &.wrong {
+    color: var(--red);
+  }
 }

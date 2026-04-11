@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./StyleQuestion.module.scss";
 
 function MultipleChoice({ question, onAnswer }) {
   const [valgtIndex, setValgtIndex] = useState(null);
@@ -9,23 +10,43 @@ function MultipleChoice({ question, onAnswer }) {
     onAnswer(index === question.correct, question.explanation);
   };
 
+  const isCorrect = valgtIndex !== null && valgtIndex === question.correct;
+
   return (
-    <div>
-      <p>{question.question}</p>
+    <div className={styles.questionWrapper}>
+      <div className={styles.multipleChoice}>
+        <p className={styles.questionText}>{question.question}</p>
 
-      {question.options.map((option, index) => (
-        <button key={index} onClick={() => handleSvar(index)}>
-          {option}
-        </button>
-      ))}
+        <ul className={styles.optionsList}>
+          {question.options.map((option, index) => {
+            let stateClass = "";
+            if (valgtIndex !== null) {
+              if (index === question.correct) stateClass = styles.correct;
+              else if (index === valgtIndex)  stateClass = styles.wrong;
+            }
 
-      {valgtIndex !== null && (
-        <p>
-          {valgtIndex === question.correct
-            ? "Riktig!"
-            : `Feil! Riktig svar er: ${question.options[question.correct]}`}
-        </p>
-      )}
+            return (
+              <li key={index}>
+                <button
+                  className={`${styles.optionBtn} ${stateClass}`}
+                  onClick={() => handleSvar(index)}
+                  disabled={valgtIndex !== null}
+                >
+                  {option}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        {valgtIndex !== null && (
+          <p className={`${styles.feedbackText} ${isCorrect ? styles.correct : styles.wrong}`}>
+            {isCorrect
+              ? "Riktig!"
+              : `Feil! Riktig svar er: ${question.options[question.correct]}`}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

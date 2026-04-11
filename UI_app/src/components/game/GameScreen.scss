@@ -1,0 +1,141 @@
+// ── Game Screen ──────────────────────────────────────────
+
+.game-screen {
+  animation: fadeIn 0.3s ease;
+}
+
+// ── Player Info Banner ────────────────────────────────────
+.player-info {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.25rem 0.9rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+
+  // Amber left-edge accent
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dim) 100%);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .player-turn {
+    font-size: 0.9rem;
+    color: var(--text-bright);
+    margin: 0;
+  }
+
+  .player-difficulty {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  strong { color: var(--accent-text); }
+}
+
+// ── Phase panels ──────────────────────────────────────────
+.phase-panel {
+  animation: slideUp 0.3s ease;
+}
+
+// ── Wrong answer / next player ────────────────────────────
+.wrong-answer-panel {
+  background: var(--bg-surface);
+  border: 1px solid rgba(224, 85, 85, 0.25);
+  border-left: 3px solid var(--red);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  animation: slideUp 0.3s ease;
+
+  .wrong-label {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--text);
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+}
+
+// ── Boss area ─────────────────────────────────────────────
+.boss-area {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(224, 85, 85, 0.1) 0%, transparent 65%),
+    var(--bg-surface);
+  border: 1px solid rgba(224, 85, 85, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+
+  h1, h2 {
+    color: var(--red);
+    text-shadow: 0 0 24px var(--red-glow);
+    animation: glow-pulse 2s ease infinite;
+  }
+}
+
+// ── Buttons ───────────────────────────────────────────────
+.btn-next {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--accent-dim);
+    color: var(--accent-text);
+    box-shadow: var(--glow-accent);
+    transform: translateY(-1px);
+  }
+
+  &:active { transform: translateY(0); }
+}
+
+.btn-boss-activate {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: transparent;
+  border: 1px solid rgba(224, 85, 85, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1.5rem;
+
+  &:hover {
+    background: rgba(224, 85, 85, 0.1);
+    border-color: var(--red);
+    box-shadow: var(--glow-red);
+  }
+}

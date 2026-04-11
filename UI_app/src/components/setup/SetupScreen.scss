@@ -1,0 +1,227 @@
+// ── Setup Screen ──────────────────────────────────────────
+// Dungeon-card mixin: dark surface with corner bracket ornaments
+@mixin dungeon-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  position: relative;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: var(--accent-dim);
+    border-style: solid;
+    opacity: 0.45;
+  }
+  &::before {
+    top: -1px; left: -1px;
+    border-width: 2px 0 0 2px;
+    border-radius: 2px 0 0 0;
+  }
+  &::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 2px 2px 0;
+    border-radius: 0 0 2px 0;
+  }
+}
+
+// ── Root ─────────────────────────────────────────────────
+.setup-screen {
+  max-width: 620px;
+  margin: 0 auto;
+  animation: slideUp 0.4s ease;
+}
+
+// ── Title ─────────────────────────────────────────────────
+.setup-title {
+  text-align: center;
+  font-family: var(--font-display);
+  color: var(--accent-text);
+  text-shadow: 0 0 32px var(--accent-glow);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.2em;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 0.6em auto 0;
+  }
+}
+
+// ── Sections ──────────────────────────────────────────────
+.setup-section {
+  @include dungeon-card;
+  margin-bottom: 1rem;
+}
+
+.setup-section-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.85rem;
+}
+
+// ── Player count row ──────────────────────────────────────
+.player-count-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+// ── Player card ───────────────────────────────────────────
+.player-card {
+  @include dungeon-card;
+  margin-bottom: 0.75rem;
+  border-color: rgba(74, 158, 255, 0.12);
+  animation: slideUp 0.3s ease both;
+
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) { animation-delay: #{$i * 0.06}s; }
+  }
+
+  .player-card-header {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.9rem;
+  }
+
+  .player-fields {
+    display: flex;
+    gap: 0.75rem;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+    }
+  }
+}
+
+// ── Category grid ─────────────────────────────────────────
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.category-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.85rem;
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  background: transparent;
+  transition: all 0.15s ease;
+  user-select: none;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  &:has(input:checked) {
+    border-color: var(--accent);
+    color: var(--accent-text);
+    background: var(--accent-glow);
+    box-shadow: 0 0 8px rgba(232, 160, 32, 0.1);
+  }
+
+  &:hover {
+    border-color: var(--accent-dim);
+    color: var(--text);
+  }
+}
+
+// ── Form controls ─────────────────────────────────────────
+.setup-input,
+.setup-select {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-bright);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.9rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+
+  &:focus {
+    border-color: var(--accent-dim);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+  }
+
+  option {
+    background: var(--bg-card);
+    color: var(--text);
+  }
+}
+
+// ── Start button ──────────────────────────────────────────
+.btn-start {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #07090e;
+  background: linear-gradient(135deg, #e8a020, #f5bf40, #d08010);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(232, 160, 32, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(232, 160, 32, 0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+    &::before { opacity: 1; }
+  }
+
+  &:not(:disabled):active { transform: translateY(0); }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}

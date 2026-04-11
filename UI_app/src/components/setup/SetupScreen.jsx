@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGame } from "../../context/useGame";
 import { categoryNames } from "../../data/questions";
+import "./SetupScreen.scss";
 
 const alleKategorier = Object.keys(categoryNames);
 
@@ -46,55 +47,67 @@ export default function SetupScreen({ onStartGame }) {
   };
 
   return (
-    <article>
-      <h1>Spilloppsett</h1>
+    <div className="setup-screen">
+      <h1 className="setup-title">Spilloppsett</h1>
 
-      <label>Antall spillere:</label>
-      <select
-        value={antallSpillere}
-        onChange={(e) => handleAntall(Number(e.target.value))}
-      >
-        {[1, 2, 3, 4].map((n) => (
-          <option key={n} value={n}>
-            {n}
-          </option>
-        ))}
-      </select>
+      <div className="setup-section">
+        <span className="setup-section-label">Antall spillere</span>
+        <div className="player-count-row">
+          <select
+            className="setup-select"
+            value={antallSpillere}
+            onChange={(e) => handleAntall(Number(e.target.value))}
+          >
+            {[1, 2, 3, 4].map((n) => (
+              <option key={n} value={n}>
+                {n} spiller{n > 1 ? "e" : ""}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
 
       {spillere.map((spiller, i) => (
-        <div key={i}>
-          <h3>Spiller {i + 1}</h3>
-          <input
-            placeholder="Spillerens navn"
-            value={spiller.name}
-            onChange={(e) => handleChange(i, "name", e.target.value)}
-          />
-          <select
-            value={spiller.difficulty}
-            onChange={(e) => handleChange(i, "difficulty", e.target.value)}
-          >
-            <option value="easy">Lett</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Vanskelig</option>
-          </select>
+        <div key={i} className="player-card">
+          <div className="player-card-header">Spiller {i + 1}</div>
+          <div className="player-fields">
+            <input
+              className="setup-input"
+              placeholder="Spillerens navn"
+              value={spiller.name}
+              onChange={(e) => handleChange(i, "name", e.target.value)}
+            />
+            <select
+              className="setup-select"
+              value={spiller.difficulty}
+              onChange={(e) => handleChange(i, "difficulty", e.target.value)}
+            >
+              <option value="easy">Lett</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Vanskelig</option>
+            </select>
+          </div>
         </div>
       ))}
 
-      <fieldset>
-        <legend>Kategorier:</legend>
-        {alleKategorier.map((key) => (
-          <label key={key}>
-            <input
-              type="checkbox"
-              checked={valgtKategorier.includes(key)}
-              onChange={() => toggleKategori(key)}
-            />
-            {categoryNames[key]}
-          </label>
-        ))}
-      </fieldset>
+      <div className="setup-section">
+        <span className="setup-section-label">Kategorier</span>
+        <div className="category-grid">
+          {alleKategorier.map((key) => (
+            <label key={key} className="category-toggle">
+              <input
+                type="checkbox"
+                checked={valgtKategorier.includes(key)}
+                onChange={() => toggleKategori(key)}
+              />
+              {categoryNames[key]}
+            </label>
+          ))}
+        </div>
+      </div>
 
       <button
+        className="btn-start"
         onClick={handleStart}
         disabled={
           spillere.some((s) => s.name.trim() === "") ||
@@ -103,6 +116,6 @@ export default function SetupScreen({ onStartGame }) {
       >
         Start spill
       </button>
-    </article>
+    </div>
   );
 }

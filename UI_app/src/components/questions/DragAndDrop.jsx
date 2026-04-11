@@ -23,32 +23,48 @@ const DragAndDrop = ({ question, onAnswer }) => {
     setDropped("");
   }
 
+  const isCorrect = answered && dropped === question.correct;
+
   return (
-    <div className={styles.dragAndDrop}>
-      <h3>{question.question}</h3>
+    <div className={styles.questionWrapper}>
+      <div className={styles.dragAndDrop}>
+        <h3>{question.question}</h3>
 
-      <div
-        onDrop={drop}
-        onDragOver={allowDrop}
-        className={`${styles.dropZone} ${dropped ? styles.filled : ""}`}
-      >
-        {dropped || "???"}
-      </div>
+        <div className={styles.codeBlock}>
+          <span
+            onDrop={drop}
+            onDragOver={allowDrop}
+            className={`${styles.dropZone} ${dropped ? styles.filled : ""}`}
+          >
+            {dropped || "???"}
+          </span>
+        </div>
 
-      <div className={styles.options}>
-        {question.options.map((option) => (
-          <div key={option} draggable onDragStart={drag} className={styles.option}>
-            {option}
+        <div className={styles.options}>
+          {question.options.map((option) => (
+            <div key={option} draggable onDragStart={drag} className={styles.option}>
+              {option}
+            </div>
+          ))}
+        </div>
+
+        {!answered && (
+          <div className={styles.dragActions}>
+            <button className={styles.confirmBtn} onClick={confirm} disabled={!dropped}>
+              Bekreft svar
+            </button>
+            <button className={styles.resetBtn} onClick={reset}>
+              Reset
+            </button>
           </div>
-        ))}
-      </div>
+        )}
 
-      {!answered && (
-        <>
-          <button onClick={confirm} disabled={!dropped}>Bekreft svar</button>
-          <button onClick={reset} className={styles.resetBtn}>Reset</button>
-        </>
-      )}
+        {answered && (
+          <p className={`${styles.result} ${isCorrect ? styles.correct : styles.wrong}`}>
+            {isCorrect ? "Riktig!" : `Feil! Riktig svar er: ${question.correct}`}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

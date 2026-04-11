@@ -10,26 +10,33 @@ export default function D6Roller({ onRollComplete }) {
   };
 
   return (
-    <div className="diceArea diceArea--d6">
-      <button
-        type="button"
-        className="diceButton diceButton--d6"
-        onClick={roll}
-        disabled={!!result}
-      >
-        Kast D6
-      </button>
-      {result && (
-        <>
-          <p className="diceText diceText--d6">
-            Flytt brikken <span className="diceResult">{result}</span> ruter
-            fremover!
-          </p>
-          <button type="button" onClick={() => onRollComplete(result)}>
-            Neste spiller
-          </button>
-        </>
-      )}
+    <div className="diceContainer">
+      <div className="diceArea diceArea--d6">
+        <button
+          type="button"
+          className="diceButton diceButton--d6"
+          onClick={roll}
+          disabled={!!result}
+        >
+          Kast D6
+        </button>
+        {result && (
+          <>
+            <p className="diceText diceText--d6">
+              Flytt brikken{" "}
+              <span className="diceResult diceResult--d6">{result}</span>{" "}
+              ruter fremover!
+            </p>
+            <button
+              type="button"
+              className="diceButton diceButton--d6"
+              onClick={() => onRollComplete(result)}
+            >
+              Neste spiller
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

@@ -18,23 +18,34 @@ export default function D20Roller({ onRollComplete }) {
   const categoryName = category ? categoryNames[category] : null;
 
   return (
-    <div className="diceArea diceArea--d20">
-      <button type="button" onClick={roll} disabled={!!result}>
-        Kast D20
-      </button>
-      {result && (
-        <>
-          <p>
-            Resultat: <strong>{result}</strong>
-          </p>
-          <p>
-            Kategori: <strong>{categoryName}</strong>
-          </p>
-          <button type="button" onClick={() => onRollComplete(result)}>
-            Fortsett
-          </button>
-        </>
-      )}
+    <div className="diceContainer">
+      <div className="diceArea diceArea--d20">
+        <button
+          type="button"
+          className="diceButton diceButton--d20"
+          onClick={roll}
+          disabled={!!result}
+        >
+          Kast D20
+        </button>
+        {result && (
+          <>
+            <p className="diceText">
+              Resultat: <strong className="diceResult diceResult--d20">{result}</strong>
+            </p>
+            <p className="diceText">
+              Kategori: <strong>{categoryName}</strong>
+            </p>
+            <button
+              type="button"
+              className="diceButton diceButton--d20"
+              onClick={() => onRollComplete(result)}
+            >
+              Fortsett
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

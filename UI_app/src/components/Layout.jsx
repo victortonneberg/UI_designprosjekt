@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   return (
     <>
       <header>
-        Navn på spill...
+        <span className="game-title">Navn på spill...</span>
         <nav>
           <ul>
             <li>
