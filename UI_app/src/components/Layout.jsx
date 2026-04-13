@@ -2,13 +2,13 @@ import { useState } from "react";
 import "../assets/styles/Layout.scss";
 import RulesModal from "./rulesButton/rules";
 
-export default function Layout({ children }) {
+export default function Layout({ children, onHome }) {
   const [showRules, setShowRules] = useState(false);
 
   return (
     <>
       <header>
-        <span className="game-title">Navn på spill...</span>
+        <span className="game-title" onClick={onHome} style={{ cursor: "pointer" }}>Navn på spill...</span>
         <nav>
           <ul>
             <li>

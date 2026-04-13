@@ -156,6 +156,11 @@ header {
     text-shadow: 0 0 24px var(--accent-glow), 0 0 48px rgba(232, 160, 32, 0.08);
     letter-spacing: 0.1em;
     margin: 0;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent-text);
+    }
   }
 
   nav {

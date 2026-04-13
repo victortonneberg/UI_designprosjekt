@@ -8,7 +8,7 @@ function App() {
   const [screen, setScreen] = useState("setup");
 
   return (
-    <Layout>
+    <Layout onHome={() => setScreen("setup")}>
       <GameProvider>
         {screen === "setup" && (
           <SetupScreen onStartGame={() => setScreen("game")} />
