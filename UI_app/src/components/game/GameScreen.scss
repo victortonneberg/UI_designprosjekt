@@ -20,11 +20,17 @@
 
   // Amber left-edge accent
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    left: 0; top: 0; bottom: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 3px;
-    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dim) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--accent) 0%,
+      var(--accent-dim) 100%
+    );
     border-radius: 0 2px 2px 0;
   }
 
@@ -40,7 +46,9 @@
     margin: 0;
   }
 
-  strong { color: var(--accent-text); }
+  strong {
+    color: var(--accent-text);
+  }
 }
 
 // ── Phase panels ──────────────────────────────────────────
@@ -60,7 +68,7 @@
 
   .wrong-label {
     font-family: var(--font-display);
-    font-size: 0.6rem;
+    font-size: 1.2rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--red);
@@ -78,7 +86,11 @@
 // ── Boss area ─────────────────────────────────────────────
 .boss-area {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(224, 85, 85, 0.1) 0%, transparent 65%),
+    radial-gradient(
+      ellipse 80% 50% at 50% 0%,
+      rgba(224, 85, 85, 0.1) 0%,
+      transparent 65%
+    ),
     var(--bg-surface);
   border: 1px solid rgba(224, 85, 85, 0.25);
   border-radius: var(--radius-lg);
@@ -86,7 +98,8 @@
   text-align: center;
   animation: fadeIn 0.4s ease;
 
-  h1, h2 {
+  h1,
+  h2 {
     color: var(--red);
     text-shadow: 0 0 24px var(--red-glow);
     animation: glow-pulse 2s ease infinite;
@@ -115,7 +128,9 @@
     transform: translateY(-1px);
   }
 
-  &:active { transform: translateY(0); }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .btn-boss-activate {

@@ -51,9 +51,12 @@ export default function SetupScreen({ onStartGame }) {
       <h1 className="setup-title">Spilloppsett</h1>
 
       <div className="setup-section">
-        <span className="setup-section-label">Antall spillere</span>
+        <label htmlFor="player-count" className="setup-section-label">
+          Antall spillere
+        </label>
         <div className="player-count-row">
           <select
+            id="player-count"
             className="setup-select"
             value={antallSpillere}
             onChange={(e) => handleAntall(Number(e.target.value))}
@@ -71,13 +74,21 @@ export default function SetupScreen({ onStartGame }) {
         <div key={i} className="player-card">
           <div className="player-card-header">Spiller {i + 1}</div>
           <div className="player-fields">
+            <label htmlFor={`player-name-${i}`} className="sr-only">
+              Spiller {i + 1} navn
+            </label>
             <input
+              id={`player-name-${i}`}
               className="setup-input"
               placeholder="Spillerens navn"
               value={spiller.name}
               onChange={(e) => handleChange(i, "name", e.target.value)}
             />
+            <label htmlFor={`player-diff-${i}`} className="sr-only">
+              Vanskelighetsgrad for spiller {i + 1}
+            </label>
             <select
+              id={`player-diff-${i}`}
               className="setup-select"
               value={spiller.difficulty}
               onChange={(e) => handleChange(i, "difficulty", e.target.value)}
