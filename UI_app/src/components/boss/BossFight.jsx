@@ -63,7 +63,7 @@ export default function BossFight() {
     case "roll-d6":
       return (
         <>
-          <h2>Du drepte bossen! Kast D6</h2>
+          <h2>Du bekjempet bossen! Kast terningen</h2>
           <D6Roller
             onRollComplete={() => {
               endBossFight();
