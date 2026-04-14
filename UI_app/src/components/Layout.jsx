@@ -8,11 +8,20 @@ export default function Layout({ children, onHome }) {
   return (
     <>
       <header>
-        <span className="game-title" onClick={onHome} style={{ cursor: "pointer" }}>Navn på spill...</span>
+        <span
+          className="game-title"
+          onClick={onHome}
+          style={{ cursor: "pointer" }}
+        >
+          Dungeons, Bugs & Bosses
+        </span>
         <nav>
           <ul>
             <li>
-              <button className="help-button" onClick={() => setShowRules(true)}>
+              <button
+                className="help-button"
+                onClick={() => setShowRules(true)}
+              >
                 Regler
               </button>
             </li>
@@ -23,7 +32,7 @@ export default function Layout({ children, onHome }) {
       <main>{children}</main>
 
       <footer>
-        <p>2026 &copy; Spillnavn... </p>
+        <p>2026 &copy; Dungeons, Bugs & Bosses</p>
       </footer>
 
       {showRules && <RulesModal onClose={() => setShowRules(false)} />}
