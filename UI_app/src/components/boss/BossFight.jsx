@@ -43,6 +43,7 @@ export default function BossFight() {
         <>
           <h2>Boss-kamp – Spørsmål 1 av 2</h2>
           <QuestionCard
+            key="boss-q1"
             d20Result={d20Results.current[0]}
             onAnswer={handleQ1Answer}
           />
@@ -54,6 +55,7 @@ export default function BossFight() {
         <>
           <h2>Boss-kamp – Spørsmål 2 av 2</h2>
           <QuestionCard
+            key="boss-q2"
             d20Result={d20Results.current[1]}
             onAnswer={handleQ2Answer}
           />
