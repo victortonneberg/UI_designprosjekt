@@ -32,6 +32,7 @@ export default function D6Roller({ onRollComplete }) {
 
   return (
     <div className="diceContainer">
+      <span className="diceText diceText--d6">Riktig svar!</span>
       <div className="diceArea diceArea--d6">
         <button
           type="button"
