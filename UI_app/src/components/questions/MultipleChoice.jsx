@@ -40,7 +40,10 @@ function MultipleChoice({ question, onAnswer }) {
         </ul>
 
         {valgtIndex !== null && (
-          <p className={`${styles.feedbackText} ${isCorrect ? styles.correct : styles.wrong}`}>
+          <p
+            role="alert"
+            className={`${styles.feedbackText} ${isCorrect ? styles.correct : styles.wrong}`}
+          >
             {isCorrect
               ? "Riktig!"
               : `Feil! Riktig svar er: ${question.options[question.correct]}`}

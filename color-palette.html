@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fargepalett – Dungeon Terminal</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f5f5f5;
+        padding: 40px;
+        color: #222;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 36px;
+      }
+
+      .section {
+        margin-bottom: 36px;
+      }
+
+      .section-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #888;
+        margin-bottom: 12px;
+      }
+
+      .swatches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .swatch {
+        width: 130px;
+      }
+
+      .swatch-color {
+        width: 130px;
+        height: 70px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        margin-bottom: 6px;
+      }
+
+      .swatch-name {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .swatch-var {
+        font-size: 0.7rem;
+        color: #777;
+        font-family: monospace;
+      }
+
+      .swatch-hex {
+        font-size: 0.7rem;
+        color: #999;
+        font-family: monospace;
+      }
+
+      @media print {
+        body {
+          background: white;
+          padding: 20px;
+        }
+        .section {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fargepalett UI</h1>
+
+    <!-- Bakgrunner -->
+    <div class="section">
+      <div class="section-title">Bakgrunner</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background: #07090e"></div>
+          <div class="swatch-name">Deep</div>
+          <div class="swatch-var">--bg-deep</div>
+          <div class="swatch-hex">#07090e</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #0d1219"></div>
+          <div class="swatch-name">Base</div>
+          <div class="swatch-var">--bg</div>
+          <div class="swatch-hex">#0d1219</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #141c2b"></div>
+          <div class="swatch-name">Surface</div>
+          <div class="swatch-var">--bg-surface</div>
+          <div class="swatch-hex">#141c2b</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #1a2438"></div>
+          <div class="swatch-name">Elevated</div>
+          <div class="swatch-var">--bg-elevated</div>
+          <div class="swatch-hex">#1a2438</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #1e2b40"></div>
+          <div class="swatch-name">Card</div>
+          <div class="swatch-var">--bg-card</div>
+          <div class="swatch-hex">#1e2b40</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aksent (Amber/Fakkellys) -->
+    <div class="section">
+      <div class="section-title">Aksent – Amber / Fakkellys</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background: #e8a020"></div>
+          <div class="swatch-name">Aksent</div>
+          <div class="swatch-var">--accent</div>
+          <div class="swatch-hex">#e8a020</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #ffd060"></div>
+          <div class="swatch-name">Aksent tekst</div>
+          <div class="swatch-var">--accent-text</div>
+          <div class="swatch-hex">#ffd060</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #9c6a14"></div>
+          <div class="swatch-name">Aksent dempet</div>
+          <div class="swatch-var">--accent-dim</div>
+          <div class="swatch-hex">#9c6a14</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #f5bf40"></div>
+          <div class="swatch-name">Gull lys</div>
+          <div class="swatch-var">–</div>
+          <div class="swatch-hex">#f5bf40</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #d08010"></div>
+          <div class="swatch-name">Gull mørk</div>
+          <div class="swatch-var">–</div>
+          <div class="swatch-hex">#d08010</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantiske farger -->
+    <div class="section">
+      <div class="section-title">Semantiske farger</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background: #4a9eff"></div>
+          <div class="swatch-name">Blå</div>
+          <div class="swatch-var">--blue</div>
+          <div class="swatch-hex">#4a9eff</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #a8d4ff"></div>
+          <div class="swatch-name">Blå lys</div>
+          <div class="swatch-var">–</div>
+          <div class="swatch-hex">#a8d4ff</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #4dbd74"></div>
+          <div class="swatch-name">Grønn</div>
+          <div class="swatch-var">--green</div>
+          <div class="swatch-hex">#4dbd74</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #b8f0c8"></div>
+          <div class="swatch-name">Grønn lys</div>
+          <div class="swatch-var">–</div>
+          <div class="swatch-hex">#b8f0c8</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #e05555"></div>
+          <div class="swatch-name">Rød</div>
+          <div class="swatch-var">--red</div>
+          <div class="swatch-hex">#e05555</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #f5b8b8"></div>
+          <div class="swatch-name">Rød lys</div>
+          <div class="swatch-var">–</div>
+          <div class="swatch-hex">#f5b8b8</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tekst -->
+    <div class="section">
+      <div class="section-title">Tekst</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div
+            class="swatch-color"
+            style="background: #e8edf7; border: 1px solid #ccc"
+          ></div>
+          <div class="swatch-name">Lys</div>
+          <div class="swatch-var">--text-bright</div>
+          <div class="swatch-hex">#e8edf7</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #bdc8e0"></div>
+          <div class="swatch-name">Standard</div>
+          <div class="swatch-var">--text</div>
+          <div class="swatch-hex">#bdc8e0</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #8494b5"></div>
+          <div class="swatch-name">Dempet</div>
+          <div class="swatch-var">--text-dim</div>
+          <div class="swatch-hex">#8494b5</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #303a52"></div>
+          <div class="swatch-name">Muted</div>
+          <div class="swatch-var">--text-muted</div>
+          <div class="swatch-hex">#303a52</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

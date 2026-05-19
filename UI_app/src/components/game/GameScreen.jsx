@@ -49,7 +49,7 @@ export default function GameScreen() {
 
       case "next":
         return (
-          <div className="wrong-answer-panel">
+          <div className="wrong-answer-panel" role="alert">
             <div className="wrong-label">Feil svar</div>
             <p>{forklaring}</p>
             <button

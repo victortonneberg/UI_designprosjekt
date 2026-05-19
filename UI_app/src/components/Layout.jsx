@@ -1,26 +1,36 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "../assets/styles/Layout.scss";
 import RulesModal from "./rulesButton/rules";
 
 export default function Layout({ children, onHome }) {
   const [showRules, setShowRules] = useState(false);
+  const rulesButtonRef = useRef(null);
+
+  const openRules = () => setShowRules(true);
+  const closeRules = () => {
+    setShowRules(false);
+    requestAnimationFrame(() => rulesButtonRef.current?.focus());
+  };
 
   return (
     <>
       <header>
-        <span
+        <button
           className="game-title"
           onClick={onHome}
-          style={{ cursor: "pointer" }}
+          aria-label="Gå til startside – Dungeons & Bosses"
         >
-          Dungeons, Bugs & Bosses
-        </span>
-        <nav>
+          Dungeons & Bosses
+        </button>
+        <nav aria-label="Navigasjon">
           <ul>
             <li>
               <button
                 className="help-button"
-                onClick={() => setShowRules(true)}
+                onClick={openRules}
+                ref={rulesButtonRef}
+                aria-haspopup="dialog"
+                aria-expanded={showRules}
               >
                 Regler
               </button>
@@ -32,10 +42,10 @@ export default function Layout({ children, onHome }) {
       <main>{children}</main>
 
       <footer>
-        <p>2026 &copy; Dungeons, Bugs & Bosses</p>
+        <p>2026 &copy; Dungeons & Bosses</p>
       </footer>
 
-      {showRules && <RulesModal onClose={() => setShowRules(false)} />}
+      {showRules && <RulesModal onClose={closeRules} />}
     </>
   );
 }

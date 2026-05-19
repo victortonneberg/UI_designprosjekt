@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\victo\\\\OneDrive\\\\Annet\\\\Dokumenter\\\\GitHub\\\\UI_designprosjekt\\\\UI_app\\\\src\" -Recurse)",
+      "Bash(Select-Object -First 50)"
+    ]
+  }
+}

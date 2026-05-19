@@ -49,6 +49,8 @@
   --font-display: 'Cinzel', Georgia, serif;
   --font-body:    'Fira Code', 'Courier New', monospace;
 
+  color-scheme: dark;
+
   // Radius
   --radius-sm: 6px;
   --radius:    12px;
@@ -58,6 +60,17 @@
 // ── Reset & Base ───────────────────────────────────────────
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+button {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  padding: 0;
 }
 
 html {
@@ -157,9 +170,21 @@ header {
     letter-spacing: 0.1em;
     margin: 0;
     text-decoration: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 
     &:hover {
       color: var(--accent-text);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: var(--radius-sm);
     }
   }
 
@@ -215,6 +240,11 @@ header {
   }
 
   &:active { transform: translateY(0); }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
 // ── Main ───────────────────────────────────────────────────
@@ -332,6 +362,11 @@ footer {
     border-color: var(--border);
     box-shadow: var(--glow-accent);
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
 // ── Custom Scrollbar ───────────────────────────────────────
@@ -366,4 +401,14 @@ footer {
   60%  { transform: rotate(320deg) scale(0.95); }
   80%  { transform: rotate(355deg) scale(1.05); }
   100% { transform: rotate(360deg) scale(1); }
+}
+
+// ── Reduced Motion ─────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

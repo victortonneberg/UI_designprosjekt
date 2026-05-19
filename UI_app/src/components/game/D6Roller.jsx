@@ -32,7 +32,7 @@ export default function D6Roller({ onRollComplete }) {
 
   return (
     <div className="diceContainer">
-      <span className="diceText diceText--d6">Riktig svar!</span>
+      <span className="diceText diceText--d6" role="status">Riktig svar!</span>
       <div className="diceArea diceArea--d6">
         <button
           type="button"
@@ -44,7 +44,7 @@ export default function D6Roller({ onRollComplete }) {
         </button>
         {displayValue && (
           <>
-            <p className="diceText diceText--d6">
+            <p className="diceText diceText--d6" aria-live="polite" aria-atomic="true">
               Flytt brikken{" "}
               <span className="diceResult diceResult--d6">{displayValue}</span>{" "}
               ruter fremover!

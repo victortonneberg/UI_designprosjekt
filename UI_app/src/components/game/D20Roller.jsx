@@ -51,7 +51,7 @@ export default function D20Roller({ onRollComplete }) {
         </button>
         {displayValue && (
           <>
-            <p className="diceText">
+            <p className="diceText" aria-live="polite" aria-atomic="true">
               Resultat:{" "}
               <strong className="diceResult diceResult--d20">
                 {displayValue}
@@ -59,7 +59,7 @@ export default function D20Roller({ onRollComplete }) {
             </p>
             {!rolling && (
               <>
-                <p className="diceText">
+                <p className="diceText" aria-live="polite">
                   Kategori: <strong>{categoryName}</strong>
                 </p>
                 <button

@@ -131,6 +131,11 @@
   &:active {
     transform: translateY(0);
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
 .btn-boss-activate {
@@ -152,5 +157,10 @@
     background: rgba(224, 85, 85, 0.1);
     border-color: var(--red);
     box-shadow: var(--glow-red);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
   }
 }

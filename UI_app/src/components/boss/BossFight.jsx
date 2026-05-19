@@ -77,7 +77,7 @@ export default function BossFight() {
 
     case "failed":
       return (
-        <div className="wrong-answer-panel">
+        <div className="wrong-answer-panel" role="alert">
           <div
             className="wrong-label"
             style={{ fontSize: "1.2em", marginBottom: "20px" }}
