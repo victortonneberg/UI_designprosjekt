@@ -4,13 +4,16 @@ import styles from "./StyleQuestion.module.scss";
 const DragAndDrop = ({ question, onAnswer }) => {
   const [dropped, setDropped] = useState("");
   const [answered, setAnswered] = useState(false);
+  const [dragOver, setDragOver] = useState(false);
 
-  function allowDrop(e) { e.preventDefault(); }
+  function allowDrop(e) { e.preventDefault(); setDragOver(true); }
+  function dragLeave() { setDragOver(false); }
 
   function drag(e) { e.dataTransfer.setData("text", e.target.innerText); }
 
   function drop(e) {
     e.preventDefault();
+    setDragOver(false);
     if (answered) return;
     const value = e.dataTransfer.getData("text");
     setDropped(value);
@@ -45,7 +48,8 @@ const DragAndDrop = ({ question, onAnswer }) => {
           <span
             onDrop={drop}
             onDragOver={allowDrop}
-            className={`${styles.dropZone} ${dropped ? styles.filled : ""}`}
+            onDragLeave={dragLeave}
+            className={`${styles.dropZone} ${dropped ? styles.filled : ""} ${dragOver && !dropped ? styles.dragOver : ""}`}
             aria-label={dropped ? `Valgt svar: ${dropped}` : "Tom – dra eller klikk et svar hit"}
             aria-live="polite"
           >
